@@ -1,31 +1,32 @@
 import type { AuthUser, UserRole } from './auth-store'
+import i18n from '../i18n/config'
 
 // Demo accounts info (for display purposes only, auth happens via database)
 export const demoAccounts = [
   {
     role: 'admin' as UserRole,
     username: 'admin',
-    description: 'Full system access',
+    description: 'Accès complet au système',
   },
   {
     role: 'manager' as UserRole,
     username: 'manager1',
-    description: 'Business operations',
+    description: 'Opérations commerciales',
   },
   {
     role: 'server' as UserRole,
     username: 'server1',
-    description: 'Dine-in orders',
+    description: 'Commandes sur place',
   },
   {
     role: 'counter' as UserRole,
     username: 'counter1',
-    description: 'Orders + payments',
+    description: 'Commandes + paiements',
   },
   {
     role: 'kitchen' as UserRole,
     username: 'kitchen1',
-    description: 'Order preparation',
+    description: 'Préparation des commandes',
   },
 ]
 
@@ -62,14 +63,7 @@ export function getDefaultRouteForRole(role: UserRole): string {
 
 // Get role display name
 export function getRoleDisplayName(role: string): string {
-  const roleNames: Record<string, string> = {
-    admin: 'Administrator',
-    manager: 'Manager',
-    server: 'Server',
-    counter: 'Counter Staff',
-    kitchen: 'Kitchen Staff',
-  }
-  return roleNames[role] || role
+  return i18n.t(`roles.${role}`, { defaultValue: role })
 }
 
 // Get role color for badges
