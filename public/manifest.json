@@ -1,6 +1,6 @@
 {
-  "short_name": "TanStack App",
-  "name": "Create TanStack App Sample",
+  "short_name": "TanStack POS",
+  "name": "TanStack POS - Système de Gestion de Restaurant",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,10 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#06b6d4",
+  "background_color": "#0f172a",
+  "description": "Application mobile de point de vente pour restaurants",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "fr"
 }

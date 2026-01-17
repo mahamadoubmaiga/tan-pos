@@ -1,4 +1,5 @@
 import { createFileRoute, Outlet, Link, useNavigate } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth-context'
 import { getRoleDisplayName, getRoleColor } from '../lib/auth'
 import {
@@ -26,6 +27,7 @@ export const Route = createFileRoute('/dashboard')({
 })
 
 function DashboardLayout() {
+  const { t } = useTranslation()
   const { user, isAuthenticated, isLoading, logout } = useAuth()
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -42,7 +44,7 @@ function DashboardLayout() {
       <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t('app.loading')}</p>
         </div>
       </div>
     )
@@ -63,61 +65,61 @@ function DashboardLayout() {
       {
         to: '/dashboard',
         icon: LayoutDashboard,
-        label: 'Dashboard',
+        label: t('navigation.dashboard'),
         roles: ['admin', 'manager'],
       },
       {
         to: '/dashboard/pos',
         icon: ShoppingCart,
-        label: 'POS',
+        label: t('navigation.pos'),
         roles: ['admin', 'manager', 'server', 'counter'],
       },
       {
         to: '/dashboard/kitchen',
         icon: ChefHat,
-        label: 'Kitchen',
+        label: t('navigation.kitchen'),
         roles: ['admin', 'manager', 'kitchen'],
       },
       {
         to: '/dashboard/orders',
         icon: ClipboardList,
-        label: 'Orders',
+        label: t('navigation.orders'),
         roles: ['admin', 'manager', 'server', 'counter'],
       },
       {
         to: '/dashboard/tables',
         icon: UtensilsCrossed,
-        label: 'Tables',
+        label: t('navigation.tables'),
         roles: ['admin', 'manager', 'server'],
       },
       {
         to: '/dashboard/products',
         icon: Store,
-        label: 'Products',
+        label: t('navigation.products'),
         roles: ['admin', 'manager'],
       },
       {
         to: '/dashboard/staff',
         icon: Users,
-        label: 'Staff',
+        label: t('navigation.staff'),
         roles: ['admin'],
       },
       {
         to: '/dashboard/reports',
         icon: FileText,
-        label: 'Reports',
+        label: t('navigation.reports'),
         roles: ['admin', 'manager'],
       },
       {
         to: '/dashboard/payments',
         icon: CreditCard,
-        label: 'Payments',
+        label: t('navigation.payments'),
         roles: ['admin', 'manager', 'counter'],
       },
       {
         to: '/dashboard/settings',
         icon: Settings,
-        label: 'Settings',
+        label: t('navigation.settings'),
         roles: ['admin'],
       },
     ]
@@ -154,8 +156,8 @@ function DashboardLayout() {
               </div>
               {!sidebarCollapsed && (
                 <div>
-                  <h1 className="text-lg font-bold text-white">TanStack POS</h1>
-                  <p className="text-xs text-gray-400">Restaurant Management</p>
+                  <h1 className="text-lg font-bold text-white">{t('app.title')}</h1>
+                  <p className="text-xs text-gray-400">{t('app.subtitle')}</p>
                 </div>
               )}
             </div>
@@ -192,7 +194,7 @@ function DashboardLayout() {
               type="button"
               className="hidden lg:flex w-full items-center justify-center p-2 mb-3 rounded-lg text-gray-400 hover:bg-slate-700 hover:text-white transition-colors"
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              title={sidebarCollapsed ? t('navigation.expandSidebar') : t('navigation.collapseSidebar')}
             >
               {sidebarCollapsed ? (
                 <PanelLeft className="w-5 h-5" />
@@ -224,7 +226,7 @@ function DashboardLayout() {
                 type="button"
                 className="w-full flex items-center justify-center p-3 rounded-lg text-gray-300 hover:bg-red-500/20 hover:text-red-400 transition-colors"
                 onClick={handleLogout}
-                title="Sign Out"
+                title={t('navigation.signOut')}
               >
                 <LogOut className="w-5 h-5" />
               </button>
@@ -235,7 +237,7 @@ function DashboardLayout() {
                 onClick={handleLogout}
               >
                 <LogOut className="w-4 h-4" />
-                Sign Out
+                {t('navigation.signOut')}
               </Button>
             )}
           </div>
@@ -259,11 +261,11 @@ function DashboardLayout() {
           </button>
           <div className="flex-1 flex items-center justify-between ml-4 lg:ml-0">
             <h2 className="text-lg font-semibold text-white">
-              Welcome back, {user.fullName.split(' ')[0]}!
+              {t('navigation.welcome', { name: user.fullName.split(' ')[0] })}
             </h2>
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-400">
-                {new Date().toLocaleDateString('en-US', {
+                {new Date().toLocaleDateString('fr-FR', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',

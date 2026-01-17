@@ -9,6 +9,7 @@ import appCss from '../styles.css?url'
 
 import { AuthProvider } from '../lib/auth-context'
 import { Provider } from '../integrations/tanstack-query/root-provider'
+import '../i18n/config'
 
 import type { QueryClient } from '@tanstack/react-query'
 
@@ -29,16 +30,44 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        content: 'width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover',
       },
       {
-        title: 'TanStack POS - Restaurant Management',
+        title: 'TanStack POS - Gestion de Restaurant',
+      },
+      {
+        name: 'description',
+        content: 'Application mobile de point de vente pour restaurants',
+      },
+      {
+        name: 'theme-color',
+        content: '#06b6d4',
+      },
+      {
+        name: 'mobile-web-app-capable',
+        content: 'yes',
+      },
+      {
+        name: 'apple-mobile-web-app-capable',
+        content: 'yes',
+      },
+      {
+        name: 'apple-mobile-web-app-status-bar-style',
+        content: 'black-translucent',
+      },
+      {
+        name: 'apple-mobile-web-app-title',
+        content: 'TanStack POS',
       },
     ],
     links: [
       {
         rel: 'stylesheet',
         href: appCss,
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
       },
     ],
   }),
@@ -50,7 +79,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext()
   
   return (
-    <html lang="en">
+    <html lang="fr">
       <head>
         <HeadContent />
       </head>

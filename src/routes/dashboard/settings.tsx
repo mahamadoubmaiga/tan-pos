@@ -6,6 +6,7 @@ import { RoleGuard } from '../../components/RoleGuard'
 import { Button } from '../../components/ui/button'
 import { Input } from '../../components/ui/input'
 import { Label } from '../../components/ui/label'
+import { useTranslation } from 'react-i18next'
 import {
   Store,
   DollarSign,
@@ -44,6 +45,7 @@ const defaultSettings = {
 function SettingsPage() {
   const trpc = useTRPC()
   const queryClient = useQueryClient()
+  const { t } = useTranslation()
 
   // Fetch settings from database
   const { data: settingsData = [], isLoading } = useQuery(trpc.settings.list.queryOptions())
@@ -85,7 +87,7 @@ function SettingsPage() {
       setKitchenAlerts(getValue('kitchen_alerts') === 'true')
       setSoundEnabled(getValue('sound_enabled') === 'true')
     } else {
-      // Set defaults if no settings exist
+      // Définir les valeurs par défaut si aucun paramètre n'existe
       setRestaurantName(defaultSettings.restaurant_name)
       setAddress(defaultSettings.address)
       setPhone(defaultSettings.phone)
@@ -107,7 +109,7 @@ function SettingsPage() {
     trpc.settings.updateMultiple.mutationOptions({
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: trpc.settings.list.queryKey() })
-        alert('Settings saved successfully!')
+        alert(t('settings.messages.saveSuccess'))
       },
     })
   )
@@ -133,7 +135,7 @@ function SettingsPage() {
   }
 
   const handleReset = () => {
-    if (confirm('Are you sure you want to reset all settings to default?')) {
+    if (confirm(t('settings.messages.resetConfirm'))) {
       setRestaurantName(defaultSettings.restaurant_name)
       setAddress(defaultSettings.address)
       setPhone(defaultSettings.phone)
@@ -163,8 +165,8 @@ function SettingsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Settings</h1>
-          <p className="text-gray-400">Configure your restaurant system</p>
+          <h1 className="text-2xl font-bold text-white">{t('settings.title')}</h1>
+          <p className="text-gray-400">{t('settings.subtitle')}</p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -173,14 +175,14 @@ function SettingsPage() {
             onClick={handleReset}
           >
             <RotateCcw className="w-4 h-4 mr-2" />
-            Reset
+            {t('common.reset')}
           </Button>
           <Button
             className="bg-cyan-500 hover:bg-cyan-600"
             onClick={handleSave}
           >
             <Save className="w-4 h-4 mr-2" />
-            Save Changes
+            {t('settings.saveChanges')}
           </Button>
         </div>
       </div>
@@ -192,13 +194,13 @@ function SettingsPage() {
             <Store className="w-5 h-5 text-cyan-400" />
           </div>
           <div>
-            <h2 className="font-semibold text-white">Restaurant Information</h2>
-            <p className="text-sm text-gray-400">Basic details about your restaurant</p>
+            <h2 className="font-semibold text-white">{t('settings.sections.restaurant.title')}</h2>
+            <p className="text-sm text-gray-400">{t('settings.sections.restaurant.description')}</p>
           </div>
         </div>
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <Label className="text-gray-300">Restaurant Name</Label>
+            <Label className="text-gray-300">{t('settings.sections.restaurant.name')}</Label>
             <Input
               value={restaurantName}
               onChange={(e) => setRestaurantName(e.target.value)}
@@ -206,7 +208,7 @@ function SettingsPage() {
             />
           </div>
           <div>
-            <Label className="text-gray-300">Email</Label>
+            <Label className="text-gray-300">{t('settings.sections.restaurant.email')}</Label>
             <Input
               type="email"
               value={email}
@@ -215,7 +217,7 @@ function SettingsPage() {
             />
           </div>
           <div>
-            <Label className="text-gray-300">Phone</Label>
+            <Label className="text-gray-300">{t('settings.sections.restaurant.phone')}</Label>
             <Input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -223,7 +225,7 @@ function SettingsPage() {
             />
           </div>
           <div>
-            <Label className="text-gray-300">Address</Label>
+            <Label className="text-gray-300">{t('settings.sections.restaurant.address')}</Label>
             <Input
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -240,27 +242,27 @@ function SettingsPage() {
             <DollarSign className="w-5 h-5 text-green-400" />
           </div>
           <div>
-            <h2 className="font-semibold text-white">Financial Settings</h2>
-            <p className="text-sm text-gray-400">Currency, taxes, and charges</p>
+            <h2 className="font-semibold text-white">{t('settings.sections.financial.title')}</h2>
+            <p className="text-sm text-gray-400">{t('settings.sections.financial.description')}</p>
           </div>
         </div>
         <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <Label className="text-gray-300">Currency</Label>
+            <Label className="text-gray-300">{t('settings.sections.financial.currency')}</Label>
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
               className="w-full mt-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
             >
-              <option value="USD">USD ($)</option>
-              <option value="EUR">EUR (€)</option>
-              <option value="GBP">GBP (£)</option>
-              <option value="JPY">JPY (¥)</option>
-              <option value="IDR">IDR (Rp)</option>
+              <option value="USD">{t('settings.sections.financial.currencies.usd')}</option>
+              <option value="EUR">{t('settings.sections.financial.currencies.eur')}</option>
+              <option value="GBP">{t('settings.sections.financial.currencies.gbp')}</option>
+              <option value="JPY">{t('settings.sections.financial.currencies.jpy')}</option>
+              <option value="IDR">{t('settings.sections.financial.currencies.idr')}</option>
             </select>
           </div>
           <div>
-            <Label className="text-gray-300">Tax Rate (%)</Label>
+            <Label className="text-gray-300">{t('settings.sections.financial.taxRate')}</Label>
             <Input
               type="number"
               min="0"
@@ -271,7 +273,7 @@ function SettingsPage() {
             />
           </div>
           <div>
-            <Label className="text-gray-300">Service Charge (%)</Label>
+            <Label className="text-gray-300">{t('settings.sections.financial.serviceCharge')}</Label>
             <Input
               type="number"
               min="0"
@@ -291,13 +293,13 @@ function SettingsPage() {
             <Receipt className="w-5 h-5 text-purple-400" />
           </div>
           <div>
-            <h2 className="font-semibold text-white">Receipt Settings</h2>
-            <p className="text-sm text-gray-400">Customize your receipts</p>
+            <h2 className="font-semibold text-white">{t('settings.sections.receipt.title')}</h2>
+            <p className="text-sm text-gray-400">{t('settings.sections.receipt.description')}</p>
           </div>
         </div>
         <div className="p-6 space-y-6">
           <div>
-            <Label className="text-gray-300">Receipt Header Message</Label>
+            <Label className="text-gray-300">{t('settings.sections.receipt.headerMessage')}</Label>
             <Input
               value={receiptHeader}
               onChange={(e) => setReceiptHeader(e.target.value)}
@@ -305,7 +307,7 @@ function SettingsPage() {
             />
           </div>
           <div>
-            <Label className="text-gray-300">Receipt Footer Message</Label>
+            <Label className="text-gray-300">{t('settings.sections.receipt.footerMessage')}</Label>
             <Input
               value={receiptFooter}
               onChange={(e) => setReceiptFooter(e.target.value)}
@@ -314,8 +316,8 @@ function SettingsPage() {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-medium text-white">Show Logo on Receipt</p>
-              <p className="text-sm text-gray-400">Display restaurant logo on printed receipts</p>
+              <p className="font-medium text-white">{t('settings.sections.receipt.showLogo')}</p>
+              <p className="text-sm text-gray-400">{t('settings.sections.receipt.showLogoDescription')}</p>
             </div>
             <button
               type="button"
@@ -341,15 +343,15 @@ function SettingsPage() {
             <Bell className="w-5 h-5 text-orange-400" />
           </div>
           <div>
-            <h2 className="font-semibold text-white">Notification Settings</h2>
-            <p className="text-sm text-gray-400">Configure system notifications</p>
+            <h2 className="font-semibold text-white">{t('settings.sections.notifications.title')}</h2>
+            <p className="text-sm text-gray-400">{t('settings.sections.notifications.description')}</p>
           </div>
         </div>
         <div className="p-6 space-y-4">
           <div className="flex items-center justify-between py-2">
             <div>
-              <p className="font-medium text-white">New Order Notifications</p>
-              <p className="text-sm text-gray-400">Get notified when new orders come in</p>
+              <p className="font-medium text-white">{t('settings.sections.notifications.newOrder')}</p>
+              <p className="text-sm text-gray-400">{t('settings.sections.notifications.newOrderDescription')}</p>
             </div>
             <button
               type="button"
@@ -367,8 +369,8 @@ function SettingsPage() {
           </div>
           <div className="flex items-center justify-between py-2">
             <div>
-              <p className="font-medium text-white">Kitchen Alerts</p>
-              <p className="text-sm text-gray-400">Alert kitchen staff for urgent orders</p>
+              <p className="font-medium text-white">{t('settings.sections.notifications.kitchenAlerts')}</p>
+              <p className="text-sm text-gray-400">{t('settings.sections.notifications.kitchenAlertsDescription')}</p>
             </div>
             <button
               type="button"
@@ -386,8 +388,8 @@ function SettingsPage() {
           </div>
           <div className="flex items-center justify-between py-2">
             <div>
-              <p className="font-medium text-white">Sound Effects</p>
-              <p className="text-sm text-gray-400">Play sounds for notifications</p>
+              <p className="font-medium text-white">{t('settings.sections.notifications.soundEffects')}</p>
+              <p className="text-sm text-gray-400">{t('settings.sections.notifications.soundEffectsDescription')}</p>
             </div>
             <button
               type="button"
@@ -408,22 +410,22 @@ function SettingsPage() {
 
       {/* System Info */}
       <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-        <h2 className="font-semibold text-white mb-4">System Information</h2>
+        <h2 className="font-semibold text-white mb-4">{t('settings.sections.system.title')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div>
-            <p className="text-gray-400">Version</p>
+            <p className="text-gray-400">{t('settings.sections.system.version')}</p>
             <p className="text-white font-medium">1.0.0</p>
           </div>
           <div>
-            <p className="text-gray-400">Framework</p>
+            <p className="text-gray-400">{t('settings.sections.system.framework')}</p>
             <p className="text-white font-medium">TanStack Start</p>
           </div>
           <div>
-            <p className="text-gray-400">Database</p>
+            <p className="text-gray-400">{t('settings.sections.system.database')}</p>
             <p className="text-white font-medium">PostgreSQL 15</p>
           </div>
           <div>
-            <p className="text-gray-400">Last Updated</p>
+            <p className="text-gray-400">{t('settings.sections.system.lastUpdated')}</p>
             <p className="text-white font-medium">Jan 7, 2026</p>
           </div>
         </div>

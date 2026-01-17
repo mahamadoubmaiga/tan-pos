@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { useAuth } from '../../lib/auth-context'
 import { useTRPC } from '../../integrations/trpc/react'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import {
   TrendingUp,
   TrendingDown,
@@ -23,6 +24,7 @@ export const Route = createFileRoute('/dashboard/')({
 function DashboardIndex() {
   const { user } = useAuth()
   const trpc = useTRPC()
+  const { t } = useTranslation()
 
   // Fetch dashboard stats from database
   const { data: dashboardStats, isLoading: statsLoading } = useQuery(
@@ -51,7 +53,7 @@ function DashboardIndex() {
     color: string
   }> = [
     {
-      title: "Today's Revenue",
+      title: t('dashboard.stats.todayRevenue'),
       value: dashboardStats ? `$${dashboardStats.todaysRevenue.toFixed(2)}` : '$0.00',
       change: '+12.5%',
       trend: 'up',
@@ -59,7 +61,7 @@ function DashboardIndex() {
       color: 'from-green-500 to-emerald-600',
     },
     {
-      title: 'Total Orders',
+      title: t('dashboard.stats.totalOrders'),
       value: dashboardStats?.todaysOrderCount?.toString() || '0',
       change: '+8.2%',
       trend: 'up',
@@ -67,7 +69,7 @@ function DashboardIndex() {
       color: 'from-blue-500 to-cyan-600',
     },
     {
-      title: 'Active Tables',
+      title: t('dashboard.stats.activeTables'),
       value: dashboardStats
         ? `${dashboardStats.occupiedTables}/${dashboardStats.totalTables}`
         : '0/0',
@@ -79,7 +81,7 @@ function DashboardIndex() {
       color: 'from-purple-500 to-indigo-600',
     },
     {
-      title: 'Avg Order Value',
+      title: t('dashboard.stats.avgOrderValue'),
       value: dashboardStats ? `$${dashboardStats.avgOrderValue.toFixed(2)}` : '$0.00',
       change: '+3.8%',
       trend: 'up',
@@ -94,11 +96,11 @@ function DashboardIndex() {
     const minutesAgo = Math.floor((Date.now() - createdAt.getTime()) / 60000)
     return {
       id: order.orderNumber,
-      table: order.tableNumber || (order.orderType === 'takeaway' ? 'Takeaway' : 'Delivery'),
-      items: 0, // Would need to count items from separate query
+      table: order.tableNumber || (order.orderType === 'takeaway' ? t('pos.orderTypes.takeaway') : t('pos.orderTypes.delivery')),
+      items: 0, // Il faudrait compter les articles depuis une requête séparée
       total: `$${parseFloat(order.total || '0').toFixed(2)}`,
       status: order.status,
-      time: minutesAgo < 1 ? 'Just now' : `${minutesAgo} min ago`,
+      time: minutesAgo < 1 ? t('orders.time.justNow') : t('orders.time.minutesAgo', { count: minutesAgo }),
     }
   })
 
@@ -147,9 +149,9 @@ function DashboardIndex() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-white">{t('dashboard.title')}</h1>
         <p className="text-gray-400">
-          Overview of your restaurant's performance
+          {t('dashboard.subtitle')}
         </p>
       </div>
 
@@ -191,7 +193,7 @@ function DashboardIndex() {
               >
                 {stat.change}
               </span>
-              <span className="text-sm text-gray-500">vs yesterday</span>
+              <span className="text-sm text-gray-500">{t('dashboard.stats.vsYesterday')}</span>
             </div>
           </div>
         ))}
@@ -204,7 +206,7 @@ function DashboardIndex() {
           <div className="p-4 border-b border-slate-700">
             <h2 className="text-lg font-semibold text-white flex items-center gap-2">
               <ShoppingCart className="w-5 h-5 text-cyan-400" />
-              Recent Orders
+              {t('dashboard.sections.recentOrders')}
             </h2>
           </div>
           <div className="divide-y divide-slate-700">
@@ -247,7 +249,7 @@ function DashboardIndex() {
           <div className="p-4 border-b border-slate-700">
             <h2 className="text-lg font-semibold text-white flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-cyan-400" />
-              Top Products
+              {t('dashboard.sections.topProducts')}
             </h2>
           </div>
           <div className="p-4 space-y-4">
@@ -271,7 +273,7 @@ function DashboardIndex() {
                     {product.name}
                   </p>
                   <p className="text-xs text-gray-400">
-                    {product.orders} orders
+                    {product.orders} {t('reports.orders')}
                   </p>
                 </div>
                 <span className="text-sm font-medium text-green-400">
@@ -287,7 +289,7 @@ function DashboardIndex() {
       {user?.role === 'admin' && (
         <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
           <h2 className="text-lg font-semibold text-white mb-4">
-            Quick Actions
+            {t('dashboard.sections.quickActions')}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <button
@@ -296,7 +298,7 @@ function DashboardIndex() {
             >
                 <Link to="/dashboard/staff">
                     <Users className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                    <span className="text-sm text-gray-300">Manage Staff</span>
+                    <span className="text-sm text-gray-300">{t('dashboard.quickActions.manageStaff')}</span>
                 </Link>
             </button>
             <button
@@ -305,7 +307,7 @@ function DashboardIndex() {
             >
                 <Link to="/dashboard/products">
                     <UtensilsCrossed className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                    <span className="text-sm text-gray-300">Edit Menu</span>
+                    <span className="text-sm text-gray-300">{t('dashboard.quickActions.editMenu')}</span>
                 </Link>
             </button>
             <button
@@ -314,7 +316,7 @@ function DashboardIndex() {
             >
                 <Link to="/dashboard/reports">
                     <BarChart3 className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                    <span className="text-sm text-gray-300">View Reports</span>
+                    <span className="text-sm text-gray-300">{t('dashboard.quickActions.viewReports')}</span>
                 </Link>
             </button>
             <button
@@ -323,7 +325,7 @@ function DashboardIndex() {
             >
                 <Link to="/dashboard/payments">
                     <DollarSign className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                    <span className="text-sm text-gray-300">Process Payment</span>
+                    <span className="text-sm text-gray-300">{t('dashboard.quickActions.processPayment')}</span>
                 </Link>
             </button>
           </div>

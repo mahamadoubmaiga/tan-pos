@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth-context'
 import { signIn } from '../lib/auth-client'
 import { demoAccounts, getDefaultRouteForRole, getRoleDisplayName } from '../lib/auth'
@@ -24,6 +25,7 @@ export const Route = createFileRoute('/login')({
 })
 
 function LoginPage() {
+  const { t } = useTranslation()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -49,7 +51,7 @@ function LoginPage() {
       })
 
       if (signInError) {
-        setError(signInError.message || 'Invalid credentials')
+        setError(signInError.message || t('login.invalidCredentials'))
         setIsLoading(false)
         return
       }
@@ -61,7 +63,7 @@ function LoginPage() {
         navigate({ to: getDefaultRouteForRole(role) })
       }
     } catch (err) {
-      setError('An error occurred. Please try again.')
+      setError(t('app.error'))
       setIsLoading(false)
     }
   }
@@ -90,9 +92,9 @@ function LoginPage() {
               <UtensilsCrossed className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">
-              TanStack POS
+              {t('app.title')}
             </h1>
-            <p className="text-gray-400">Restaurant Management System</p>
+            <p className="text-gray-400">{t('app.subtitle')}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -105,7 +107,7 @@ function LoginPage() {
 
             <div className="space-y-2">
               <Label htmlFor="username" className="text-gray-300">
-                Username
+                {t('login.username')}
               </Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
@@ -115,7 +117,7 @@ function LoginPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-500 focus:border-cyan-500 focus:ring-cyan-500/20"
-                  placeholder="Enter your username"
+                  placeholder={t('login.usernamePlaceholder')}
                   required
                 />
               </div>
@@ -123,7 +125,7 @@ function LoginPage() {
 
             <div className="space-y-2">
               <Label htmlFor="password" className="text-gray-300">
-                Password
+                {t('login.password')}
               </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
@@ -133,7 +135,7 @@ function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-500 focus:border-cyan-500 focus:ring-cyan-500/20"
-                  placeholder="Enter your password"
+                  placeholder={t('login.passwordPlaceholder')}
                   required
                 />
               </div>
@@ -147,10 +149,10 @@ function LoginPage() {
               {isLoading ? (
                 <span className="flex items-center gap-2">
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Signing in...
+                  {t('login.signingIn')}
                 </span>
               ) : (
-                'Sign In'
+                t('login.signIn')
               )}
             </Button>
           </form>
@@ -159,10 +161,10 @@ function LoginPage() {
         {/* Demo Accounts */}
         <div className="flex-1 bg-slate-800/30 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
           <h2 className="text-xl font-semibold text-white mb-2">
-            Demo Accounts
+            {t('login.demoAccounts')}
           </h2>
           <p className="text-gray-400 text-sm mb-6">
-            Click any account below to auto-fill credentials
+            {t('login.demoInfo')}
           </p>
 
           <div className="space-y-3">
@@ -193,7 +195,7 @@ function LoginPage() {
 
           <div className="mt-6 p-4 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
             <p className="text-cyan-400 text-sm">
-              <strong>All demo passwords:</strong> admin123
+              <strong>{t('login.demoPassword')}</strong>
             </p>
           </div>
         </div>

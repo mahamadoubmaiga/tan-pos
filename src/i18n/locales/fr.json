@@ -1,0 +1,452 @@
+{
+  "app": {
+    "title": "TanStack POS",
+    "subtitle": "Système de Gestion de Restaurant",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "common": {
+    "search": "Rechercher",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "back": "Retour",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "reset": "Réinitialiser",
+    "export": "Exporter",
+    "print": "Imprimer",
+    "all": "Tous",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "available": "Disponible",
+    "unavailable": "Non disponible",
+    "total": "Total",
+    "subtotal": "Sous-total",
+    "actions": "Actions",
+    "status": "Statut",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "category": "Catégorie",
+    "name": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "description": "Description",
+    "optional": "Optionnel",
+    "required": "Requis",
+    "processing": "Traitement en cours...",
+    "success": "Succès",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "login": {
+    "title": "Connexion",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "usernamePlaceholder": "Entrez votre nom d'utilisateur",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion en cours...",
+    "invalidCredentials": "Identifiants invalides",
+    "demoAccounts": "Comptes de démonstration",
+    "demoInfo": "Cliquez sur un compte ci-dessous pour remplir automatiquement les identifiants",
+    "demoPassword": "Tous les mots de passe de démo : admin123"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "pos": "Point de vente",
+    "kitchen": "Cuisine",
+    "orders": "Commandes",
+    "tables": "Tables",
+    "products": "Produits",
+    "staff": "Personnel",
+    "reports": "Rapports",
+    "payments": "Paiements",
+    "settings": "Paramètres",
+    "signOut": "Déconnexion",
+    "expandSidebar": "Agrandir la barre latérale",
+    "collapseSidebar": "Réduire la barre latérale",
+    "welcome": "Bienvenue, {{name}} !"
+  },
+  "roles": {
+    "admin": "Administrateur",
+    "manager": "Gestionnaire",
+    "server": "Serveur",
+    "counter": "Caisse",
+    "kitchen": "Cuisine"
+  },
+  "pos": {
+    "title": "Point de vente",
+    "searchPlaceholder": "Rechercher des produits...",
+    "orderTypes": {
+      "dineIn": "Sur place",
+      "takeaway": "À emporter",
+      "delivery": "Livraison"
+    },
+    "selectTable": "Sélectionner une table",
+    "tableActive": "La table {{number}} a une commande active",
+    "tableSelected": "Table {{number}} sélectionnée",
+    "cart": {
+      "title": "Nouvelle commande",
+      "addToOrder": "Ajouter à la commande",
+      "empty": "Le panier est vide",
+      "emptyMessage": "Ajoutez des articles pour commencer",
+      "alreadyOrdered": "Déjà commandé",
+      "newItems": "Nouveaux articles",
+      "orderedSubtotal": "Sous-total commandé",
+      "newItemsSubtotal": "Nouveaux articles",
+      "previousOrder": "Commande précédente",
+      "tax": "Taxe ({{rate}}%)"
+    },
+    "buttons": {
+      "sendToKitchen": "Envoyer en cuisine",
+      "payNow": "Payer maintenant {{total}}",
+      "pay": "Payer {{total}}"
+    },
+    "payment": {
+      "selectMethod": "Sélectionner le mode de paiement",
+      "cash": "Espèces",
+      "card": "Carte",
+      "digital": "Numérique"
+    },
+    "messages": {
+      "selectTableDineIn": "Veuillez sélectionner une table pour les commandes sur place",
+      "selectTable": "Veuillez sélectionner une table",
+      "noItemsToPay": "Aucun article à payer",
+      "selectPaymentMethod": "Veuillez sélectionner un mode de paiement",
+      "orderSent": "Commande envoyée en cuisine !",
+      "paymentSuccess": "Paiement traité avec succès !",
+      "orderError": "Erreur lors de l'envoi de la commande : {{error}}",
+      "paymentError": "Erreur lors du traitement du paiement : {{error}}"
+    },
+    "notePlaceholder": "Ajouter une note pour la cuisine..."
+  },
+  "kitchen": {
+    "title": "Affichage Cuisine",
+    "subtitle": "Gérer et suivre la préparation des commandes",
+    "filters": {
+      "all": "Tous",
+      "food": "Nourriture",
+      "beverage": "Boisson"
+    },
+    "tabs": {
+      "all": "Toutes les commandes",
+      "pending": "En attente",
+      "preparing": "En préparation",
+      "ready": "Prêt"
+    },
+    "empty": "Aucune commande dans cette catégorie",
+    "emptyMessage": "Les commandes apparaîtront ici lorsqu'elles seront passées",
+    "markAllReady": "Tout marquer comme prêt",
+    "rush": "URGENT",
+    "statuses": {
+      "complete": "Terminé",
+      "pending": "En attente",
+      "preparing": "En préparation",
+      "ready": "Prêt",
+      "served": "Servi",
+      "cancelled": "Annulé"
+    }
+  },
+  "products": {
+    "title": "Produits",
+    "subtitle": "Gérer vos articles de menu",
+    "addCategory": "Ajouter une catégorie",
+    "addProduct": "Ajouter un produit",
+    "searchPlaceholder": "Rechercher des produits...",
+    "allCategories": "Toutes les catégories",
+    "stock": "Stock : {{count}}",
+    "noProductsFound": "Aucun produit trouvé",
+    "columns": {
+      "product": "Produit",
+      "category": "Catégorie",
+      "price": "Prix",
+      "stock": "Stock",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "form": {
+      "productName": "Nom du produit",
+      "productNamePlaceholder": "Entrez le nom du produit",
+      "priceLabel": "Prix ($)",
+      "category": "Catégorie",
+      "emojiIcon": "Icône Emoji",
+      "editProduct": "Modifier le produit",
+      "addNewProduct": "Ajouter un nouveau produit",
+      "addNewCategory": "Ajouter une nouvelle catégorie",
+      "categoryName": "Nom de la catégorie *",
+      "categoryNamePlaceholder": "Entrez le nom de la catégorie",
+      "categoryDescription": "Description",
+      "categoryDescriptionPlaceholder": "Description optionnelle",
+      "iconName": "Nom de l'icône",
+      "iconPlaceholder": "par ex. Pizza, Café, Salade",
+      "iconHelp": "Nom de l'icône Lucide pour la catégorie"
+    }
+  },
+  "orders": {
+    "title": "Commandes",
+    "subtitle": "Gérer et suivre toutes les commandes",
+    "count": "{{count}} commandes",
+    "searchPlaceholder": "Rechercher par n° de commande, table ou serveur...",
+    "filters": {
+      "allStatuses": "Tous les statuts",
+      "pending": "En attente",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "allTypes": "Tous les types"
+    },
+    "statuses": {
+      "pending": "En attente",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "paid": "Payé",
+      "unpaid": "Non payé"
+    },
+    "columns": {
+      "order": "Commande",
+      "type": "Type",
+      "table": "Table",
+      "server": "Serveur",
+      "status": "Statut",
+      "items": "Articles",
+      "total": "Total",
+      "time": "Heure",
+      "actions": "Actions"
+    },
+    "empty": "Aucune commande trouvée",
+    "emptyMessage": "Essayez d'ajuster vos filtres",
+    "orderItems": "Articles de la commande",
+    "paymentCompleted": "Paiement effectué",
+    "paymentMethod": "Mode de paiement",
+    "printReceipt": "Imprimer le reçu",
+    "processPayment": "Traiter le paiement",
+    "time": {
+      "justNow": "À l'instant",
+      "minutesAgo": "il y a {{count}}m",
+      "hoursAgo": "il y a {{count}}h"
+    }
+  },
+  "tables": {
+    "title": "Gestion des tables",
+    "subtitle": "Gérer les tables et les places du restaurant",
+    "addTable": "Ajouter une table",
+    "totalTables": "Total des tables",
+    "statuses": {
+      "available": "Disponible",
+      "occupied": "Occupé",
+      "reserved": "Réservé",
+      "cleaning": "Nettoyage"
+    },
+    "filters": {
+      "allLocations": "Tous les emplacements"
+    },
+    "buttons": {
+      "done": "Terminé",
+      "reserve": "Réserver"
+    },
+    "empty": "Aucune table trouvée",
+    "emptyMessage": "Essayez d'ajuster vos filtres",
+    "form": {
+      "editTable": "Modifier la table",
+      "addNewTable": "Ajouter une nouvelle table",
+      "tableNumber": "Numéro de table",
+      "tableNumberPlaceholder": "par ex., 1, A1, V1",
+      "capacity": "Capacité",
+      "location": "Emplacement",
+      "locations": {
+        "indoor": "Intérieur",
+        "outdoor": "Extérieur",
+        "vip": "VIP",
+        "bar": "Bar"
+      }
+    },
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette table ?"
+  },
+  "staff": {
+    "title": "Gestion du personnel",
+    "subtitle": "Gérer le personnel de votre restaurant",
+    "addStaff": "Ajouter un membre",
+    "searchPlaceholder": "Rechercher par nom, nom d'utilisateur ou email...",
+    "columns": {
+      "staffMember": "Membre du personnel",
+      "contact": "Contact",
+      "role": "Rôle",
+      "status": "Statut",
+      "joined": "Rejoint",
+      "actions": "Actions"
+    },
+    "empty": "Aucun membre du personnel trouvé",
+    "emptyMessage": "Essayez d'ajuster votre recherche",
+    "form": {
+      "editStaff": "Modifier le membre",
+      "addNewStaff": "Ajouter un nouveau membre",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Entrez le nom complet",
+      "username": "Nom d'utilisateur",
+      "usernamePlaceholder": "Entrez le nom d'utilisateur",
+      "email": "Email",
+      "emailPlaceholder": "Entrez l'email",
+      "phone": "Téléphone",
+      "phonePlaceholder": "Entrez le numéro de téléphone",
+      "role": "Rôle",
+      "roles": {
+        "server": "Serveur",
+        "counter": "Personnel de caisse",
+        "kitchen": "Personnel de cuisine",
+        "manager": "Gestionnaire",
+        "admin": "Administrateur"
+      },
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez le mot de passe"
+    },
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce membre du personnel ?",
+    "fillAllFields": "Veuillez remplir tous les champs requis"
+  },
+  "payments": {
+    "title": "Paiements",
+    "subtitle": "Gérer et suivre tous les paiements",
+    "dateRanges": {
+      "today": "Aujourd'hui",
+      "week": "Semaine",
+      "month": "Mois",
+      "year": "Année",
+      "custom": "Personnalisé",
+      "to": "à"
+    },
+    "summary": {
+      "totalPaid": "Total payé",
+      "pending": "En attente",
+      "refunded": "Remboursé"
+    },
+    "searchPlaceholder": "Rechercher par ID de paiement, ID de commande ou personnel...",
+    "filters": {
+      "allStatus": "Tous les statuts",
+      "paid": "Payé",
+      "pending": "En attente",
+      "refunded": "Remboursé",
+      "cancelled": "Annulé",
+      "allMethods": "Toutes les méthodes",
+      "cash": "Espèces",
+      "card": "Carte",
+      "digital": "Portefeuille numérique"
+    },
+    "columns": {
+      "paymentId": "ID de paiement",
+      "order": "Commande",
+      "amount": "Montant",
+      "method": "Méthode",
+      "status": "Statut",
+      "processedBy": "Traité par",
+      "time": "Heure",
+      "actions": "Actions"
+    },
+    "empty": "Aucun paiement trouvé",
+    "emptyMessage": "Essayez d'ajuster vos filtres"
+  },
+  "reports": {
+    "title": "Rapports et analyses",
+    "subtitle": "Suivre les performances de votre restaurant",
+    "stats": {
+      "totalRevenue": "Revenu total",
+      "totalOrders": "Total des commandes",
+      "avgOrderValue": "Valeur moyenne des commandes",
+      "totalCustomers": "Total des clients",
+      "vsPrevious": "vs période précédente"
+    },
+    "charts": {
+      "hourlySales": "Ventes horaires",
+      "dailySales": "Ventes quotidiennes",
+      "salesByCategory": "Ventes par catégorie",
+      "topProducts": "Produits les plus vendus"
+    },
+    "empty": {
+      "noSales": "Aucune donnée de vente pour cette période",
+      "noCategory": "Aucune donnée de catégorie pour cette période",
+      "noProducts": "Aucune donnée de vente de produits pour cette période"
+    },
+    "orders": "commandes"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Aperçu des performances de votre restaurant",
+    "stats": {
+      "todayRevenue": "Revenu d'aujourd'hui",
+      "totalOrders": "Total des commandes",
+      "activeTables": "Tables actives",
+      "avgOrderValue": "Valeur moyenne des commandes",
+      "vsYesterday": "vs hier"
+    },
+    "sections": {
+      "recentOrders": "Commandes récentes",
+      "topProducts": "Meilleurs produits",
+      "quickActions": "Actions rapides"
+    },
+    "quickActions": {
+      "manageStaff": "Gérer le personnel",
+      "editMenu": "Modifier le menu",
+      "viewReports": "Voir les rapports",
+      "processPayment": "Traiter le paiement"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Configurer votre système de restaurant",
+    "saveChanges": "Enregistrer les modifications",
+    "sections": {
+      "restaurant": {
+        "title": "Informations du restaurant",
+        "description": "Détails de base sur votre restaurant",
+        "name": "Nom du restaurant",
+        "email": "Email",
+        "phone": "Téléphone",
+        "address": "Adresse"
+      },
+      "financial": {
+        "title": "Paramètres financiers",
+        "description": "Devise, taxes et frais",
+        "currency": "Devise",
+        "currencies": {
+          "usd": "USD ($)",
+          "eur": "EUR (€)",
+          "gbp": "GBP (£)",
+          "jpy": "JPY (¥)",
+          "idr": "IDR (Rp)"
+        },
+        "taxRate": "Taux de taxe (%)",
+        "serviceCharge": "Frais de service (%)"
+      },
+      "receipt": {
+        "title": "Paramètres de reçu",
+        "description": "Personnaliser vos reçus",
+        "headerMessage": "Message d'en-tête du reçu",
+        "footerMessage": "Message de pied de page du reçu",
+        "showLogo": "Afficher le logo sur le reçu",
+        "showLogoDescription": "Afficher le logo du restaurant sur les reçus imprimés"
+      },
+      "notifications": {
+        "title": "Paramètres de notification",
+        "description": "Configurer les notifications système",
+        "newOrder": "Notifications de nouvelle commande",
+        "newOrderDescription": "Être notifié lors de l'arrivée de nouvelles commandes",
+        "kitchenAlerts": "Alertes cuisine",
+        "kitchenAlertsDescription": "Alerter le personnel de cuisine pour les commandes urgentes",
+        "soundEffects": "Effets sonores",
+        "soundEffectsDescription": "Jouer des sons pour les notifications"
+      },
+      "system": {
+        "title": "Informations système",
+        "version": "Version",
+        "framework": "Framework",
+        "database": "Base de données",
+        "lastUpdated": "Dernière mise à jour"
+      }
+    },
+    "messages": {
+      "saveSuccess": "Paramètres enregistrés avec succès !",
+      "resetConfirm": "Êtes-vous sûr de vouloir réinitialiser tous les paramètres par défaut ?"
+    }
+  }
+}
