@@ -11,7 +11,7 @@ i18n
       },
     },
     lng: 'fr',
-    fallbackLng: 'fr',
+    fallbackLng: 'en', // Fallback to English if French translation is missing
     interpolation: {
       escapeValue: false,
     },

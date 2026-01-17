@@ -97,7 +97,7 @@ function DashboardIndex() {
     return {
       id: order.orderNumber,
       table: order.tableNumber || (order.orderType === 'takeaway' ? t('pos.orderTypes.takeaway') : t('pos.orderTypes.delivery')),
-      items: 0,
+      items: 0, // Il faudrait compter les articles depuis une requête séparée
       total: `$${parseFloat(order.total || '0').toFixed(2)}`,
       status: order.status,
       time: minutesAgo < 1 ? t('orders.time.justNow') : t('orders.time.minutesAgo', { count: minutesAgo }),

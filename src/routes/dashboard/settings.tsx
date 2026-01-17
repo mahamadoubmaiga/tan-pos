@@ -87,6 +87,7 @@ function SettingsPage() {
       setKitchenAlerts(getValue('kitchen_alerts') === 'true')
       setSoundEnabled(getValue('sound_enabled') === 'true')
     } else {
+      // Définir les valeurs par défaut si aucun paramètre n'existe
       setRestaurantName(defaultSettings.restaurant_name)
       setAddress(defaultSettings.address)
       setPhone(defaultSettings.phone)
